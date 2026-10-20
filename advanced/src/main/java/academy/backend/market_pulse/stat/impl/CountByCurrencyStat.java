@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/** Количество котировок по валюте инструмента ({@code groupingBy} + {@code counting}). */
+/**
+ * Количество котировок по валюте инструмента ({@code groupingBy} + {@code counting}).
+ */
 public class CountByCurrencyStat implements Stat<Map<Currency, Long>> {
 
     @Getter
@@ -18,9 +20,7 @@ public class CountByCurrencyStat implements Stat<Map<Currency, Long>> {
 
     @Override
     public Map<Currency, Long> calculateStats(List<Quote> quotes) {
-        // NOTICE: простой groupingBy + counting — опорная точка перед более сложными collect'ами
-        // (TickersByTypeStat, GainLossSplitStat).
-        // TODO: groupingBy + counting
-        throw new UnsupportedOperationException("CountByCurrencyStat ещё не реализован");
+        return quotes.stream()
+                .collect(Collectors.groupingBy(it -> it.getInstrument().getCurrency(), Collectors.counting()));
     }
 }

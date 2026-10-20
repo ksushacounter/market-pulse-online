@@ -25,11 +25,7 @@ public class TickersByTypeStat implements Stat<Map<InstrumentType, String>> {
 
     @Override
     public Map<InstrumentType, String> calculateStats(List<Quote> quotes) {
-        // NOTICE: groupingBy(classifier, downstream), downstream сам составной —
-        // mapping(valueExtractor, joining(delimiter)). mapping сначала проецирует элемент группы
-        // (котировку) в тикер, и только потом joining склеивает тикеры внутри группы — без
-        // mapping joining пришлось бы отдать прямо на Quote, а Quote не CharSequence.
-        // TODO: groupingBy + mapping + joining
-        throw new UnsupportedOperationException("TickersByTypeStat ещё не реализован");
+        return quotes.stream()
+                .collect(Collectors.groupingBy(it -> it.getInstrument().getType(), Collectors.mapping(it -> it.getInstrument().getTicker(), Collectors.joining(", "))));
     }
 }
