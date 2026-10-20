@@ -18,18 +18,66 @@
     </properties>
 
     <dependencies>
-        <!-- Java Object Layout: точные размеры и раскладка объектов в памяти (семинар 1, этап 6) -->
+        <!-- Java Object Layout: точные размеры и раскладка объектов в памяти -->
         <dependency>
             <groupId>org.openjdk.jol</groupId>
             <artifactId>jol-core</artifactId>
             <version>0.17</version>
         </dependency>
-        <!-- Lombok: сопроводительный материал семинара 1 — можно использовать начиная со следующего семинара -->
+        <!-- Lombok: генерация геттеров, сеттеров и конструкторов во время компиляции -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <!-- Разбор аргументов командной строки -->
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.7.7</version>
+        </dependency>
+        <!-- Генерация прокси-подклассов во время выполнения -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <!-- Try/Either как альтернатива try-catch и null -->
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <!-- Микробенчмарки: стоимость исключений -->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.37</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.37</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Иммутабельные коллекции и Multimap -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>33.4.0-jre</version>
+        </dependency>
+        <!-- Мультимножества и теоретико-множественные операции над коллекциями -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version>
+        </dependency>
+        <!-- Примитивные коллекции без boxing -->
+        <dependency>
+            <groupId>it.unimi.dsi</groupId>
+            <artifactId>fastutil</artifactId>
+            <version>8.5.15</version>
         </dependency>
     </dependencies>
 
@@ -44,6 +92,11 @@
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.openjdk.jmh</groupId>
+                            <artifactId>jmh-generator-annprocess</artifactId>
+                            <version>1.37</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
